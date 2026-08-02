@@ -135,7 +135,7 @@ export function LiveWorkout({
         <div className="flex items-center gap-3">
           <button
             onClick={() => setSheet("discard")}
-            className="flex h-[34px] w-[34px] flex-none items-center justify-center rounded-xl border border-[rgba(23,24,26,.08)] bg-surface text-base text-ink2"
+            className="flex h-[34px] w-[34px] flex-none items-center justify-center rounded-full border border-[rgba(23,24,26,.08)] bg-surface text-base text-ink2"
           >
             ×
           </button>
@@ -283,7 +283,7 @@ export function LiveWorkout({
                     <div className="mt-2.5 flex gap-2">
                       <button
                         onClick={() => addSet(i)}
-                        className="flex h-10 flex-none items-center rounded-[13px] border-[1.5px] border-dashed border-[rgba(23,24,26,.14)] px-3.5 active:bg-[#FAF9F7]"
+                        className="flex h-10 flex-none items-center rounded-full border-[1.5px] border-dashed border-[rgba(23,24,26,.14)] px-4 active:bg-[#FAF9F7]"
                       >
                         <span className="text-[13px] font-semibold text-muted">+ Set</span>
                       </button>
@@ -302,7 +302,7 @@ export function LiveWorkout({
 
           <button
             onClick={addExercise}
-            className="mb-1 flex h-[50px] items-center justify-center rounded-[18px] border-[1.5px] border-dashed border-[rgba(23,24,26,.15)] active:bg-surface"
+            className="mb-1 flex h-[50px] items-center justify-center rounded-full border-[1.5px] border-dashed border-[rgba(23,24,26,.15)] active:bg-surface"
           >
             <span className="text-sm font-semibold text-muted">+ Add exercise to this workout</span>
           </button>
@@ -313,7 +313,7 @@ export function LiveWorkout({
       <div className="safe-bottom flex-none border-t border-line bg-page/95 px-4 pt-3 backdrop-blur">
         <button
           onClick={() => setSheet("finish")}
-          className="flex h-14 w-full items-center justify-center gap-2.5 rounded-[19px] bg-ink text-[17px] font-semibold tracking-tight text-white active:opacity-85"
+          className="flex h-14 w-full items-center justify-center gap-2.5 rounded-full bg-accent text-[17px] font-semibold tracking-tight text-white active:opacity-85"
         >
           Finish workout
           <span className="text-[13px] font-medium tabular-nums text-white/55">
@@ -329,13 +329,13 @@ export function LiveWorkout({
           <button
             onClick={submit}
             disabled={submitting}
-            className="flex h-14 items-center justify-center rounded-[19px] bg-accent text-[17px] font-semibold text-white active:opacity-85 disabled:opacity-60"
+            className="flex h-14 items-center justify-center rounded-full bg-accent text-[17px] font-semibold text-white active:opacity-85 disabled:opacity-60"
           >
             {submitting ? "Saving…" : "Submit workout"}
           </button>
           <button
             onClick={() => setSheet(null)}
-            className="flex h-[52px] items-center justify-center rounded-[18px] bg-page text-base font-semibold text-ink2"
+            className="flex h-[52px] items-center justify-center rounded-full bg-page text-base font-semibold text-ink2"
           >
             Keep logging
           </button>
@@ -348,13 +348,13 @@ export function LiveWorkout({
         <div className="mt-6 flex flex-col gap-2.5">
           <button
             onClick={() => router.push("/")}
-            className="flex h-14 items-center justify-center rounded-[19px] border border-[rgba(190,60,50,.3)] bg-surface text-[17px] font-semibold text-danger active:bg-[#FDF4F3]"
+            className="flex h-14 items-center justify-center rounded-full border border-[rgba(190,60,50,.3)] bg-surface text-[17px] font-semibold text-danger active:bg-[#FDF4F3]"
           >
             Discard
           </button>
           <button
             onClick={() => setSheet(null)}
-            className="flex h-[52px] items-center justify-center rounded-[18px] bg-page text-base font-semibold text-ink2"
+            className="flex h-[52px] items-center justify-center rounded-full bg-page text-base font-semibold text-ink2"
           >
             Keep going
           </button>

@@ -12,6 +12,7 @@ import {
   type Routine,
   type RoutineExercise,
   type Unit,
+  type WorkoutLog,
 } from "./schema";
 
 // ─────────────────────────────────────────────────────────────
@@ -288,6 +289,20 @@ export async function getActivityMap(
     map[l.date] = { kind: "log", abbr: abbrOf(l.routineName), hasOverride: false };
   }
   return map;
+}
+
+/** Full log rows in a range (for calendars + the completed-session popup). */
+export async function getWorkoutLogsInRange(
+  userId: string,
+  fromKey: string,
+  toKey: string,
+): Promise<WorkoutLog[]> {
+  const db = getDb();
+  return db
+    .select()
+    .from(workoutLogs)
+    .where(and(eq(workoutLogs.userId, userId), gte(workoutLogs.date, fromKey), lt(workoutLogs.date, toKey)))
+    .orderBy(desc(workoutLogs.date));
 }
 
 export async function getLogByDate(userId: string, date: string) {

@@ -8,6 +8,8 @@ import { formatShort, monthGridFromOffset, parseKey } from "@/lib/dates";
 import { abbrOf } from "@/lib/workout";
 import { Calendar } from "@/components/Calendar";
 
+const PAGE = 5;
+
 export function HistoryScreen({
   today,
   schedule,
@@ -19,6 +21,7 @@ export function HistoryScreen({
 }) {
   const router = useRouter();
   const [offset, setOffset] = useState(0);
+  const [showAll, setShowAll] = useState(false);
 
   const activity: Record<string, DayInfo> = {};
   for (const s of schedule)
@@ -30,22 +33,29 @@ export function HistoryScreen({
     const p = parseKey(l.date);
     return p.m === grid.month0 && p.y === grid.year;
   });
+  const visible = showAll ? monthLogs : monthLogs.slice(0, PAGE);
 
   return (
-    <div className="safe-top px-5 pb-2">
+    <div className="safe-top px-5 pb-[104px]">
       <h1 className="pt-2 text-[27px] font-bold tracking-tight text-ink">Past workouts</h1>
 
       <div className="my-3 flex items-center justify-between">
         <button
-          onClick={() => setOffset((o) => o - 1)}
-          className="flex h-9 w-9 items-center justify-center rounded-xl border border-[rgba(23,24,26,.08)] bg-surface text-base text-ink2"
+          onClick={() => {
+            setOffset((o) => o - 1);
+            setShowAll(false);
+          }}
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(23,24,26,.08)] bg-surface text-base text-ink2"
         >
           ‹
         </button>
         <span className="text-base font-semibold text-ink">{grid.label}</span>
         <button
-          onClick={() => setOffset((o) => o + 1)}
-          className="flex h-9 w-9 items-center justify-center rounded-xl border border-[rgba(23,24,26,.08)] bg-surface text-base text-ink2"
+          onClick={() => {
+            setOffset((o) => o + 1);
+            setShowAll(false);
+          }}
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(23,24,26,.08)] bg-surface text-base text-ink2"
         >
           ›
         </button>
@@ -65,8 +75,8 @@ export function HistoryScreen({
       <div className="mb-2.5 mt-6 text-[11px] font-semibold tracking-[0.12em] text-faint">
         PAST SESSIONS
       </div>
-      <div className="flex flex-col gap-2 pb-2">
-        {monthLogs.map((s) => (
+      <div className="flex flex-col gap-2">
+        {visible.map((s) => (
           <button
             key={s.date}
             onClick={() => router.push(`/session/${s.date}`)}
@@ -85,6 +95,14 @@ export function HistoryScreen({
           <div className="py-2.5 text-center text-[13px] text-faint">
             No workouts logged in {grid.label}.
           </div>
+        )}
+        {monthLogs.length > PAGE && (
+          <button
+            onClick={() => setShowAll((v) => !v)}
+            className="mt-1 flex h-11 items-center justify-center rounded-full text-sm font-semibold text-accent active:opacity-70"
+          >
+            {showAll ? "Show less" : `Show all ${monthLogs.length} sessions`}
+          </button>
         )}
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { requireUserId } from "@/lib/session";
-import { getLogs, getSchedule, listRoutines } from "@/db/queries";
+import { getSchedule, getWorkoutLogsInRange, listRoutines } from "@/db/queries";
 import { addDaysKey, todayKey } from "@/lib/dates";
 import { PlanScreen } from "@/components/screens/PlanScreen";
 
@@ -11,7 +11,7 @@ export default async function PlanPage() {
   const [routines, schedule, logs] = await Promise.all([
     listRoutines(userId),
     getSchedule(userId, from, to),
-    getLogs(userId, from, to),
+    getWorkoutLogsInRange(userId, from, to),
   ]);
 
   return (

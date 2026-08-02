@@ -11,29 +11,60 @@ const TABS = [
 
 export function TabBar() {
   const path = usePathname();
+  const activeIdx = TABS.findIndex(([href]) =>
+    href === "/" ? path === "/" : path.startsWith(href),
+  );
+
   return (
-    <nav className="safe-bottom flex flex-none items-start gap-1 border-t border-line bg-white/90 px-3 pt-2 backdrop-blur-xl">
-      {TABS.map(([href, label]) => {
-        const active = href === "/" ? path === "/" : path.startsWith(href);
-        return (
-          <Link
-            key={href}
-            href={href}
-            className="flex h-14 flex-1 flex-col items-center justify-center gap-1.5"
-          >
-            <span
-              className="h-[5px] w-[5px] rounded-full"
-              style={{ background: active ? "#2F7D57" : "transparent" }}
-            />
-            <span
-              className="text-xs font-semibold"
-              style={{ color: active ? "#17181A" : "#7C7972" }}
+    <div
+      className="pointer-events-none fixed inset-x-0 bottom-0 z-30 flex justify-center px-5 pt-3.5"
+      style={{
+        paddingBottom: "max(env(safe-area-inset-bottom), 22px)",
+        background:
+          "linear-gradient(to top, rgba(244,243,241,.92) 42%, rgba(244,243,241,0))",
+      }}
+    >
+      <div
+        className="pointer-events-auto flex w-full items-center gap-0.5 rounded-full p-[5px]"
+        style={{
+          background: "rgba(255,255,255,.72)",
+          backdropFilter: "blur(22px) saturate(180%)",
+          WebkitBackdropFilter: "blur(22px) saturate(180%)",
+          boxShadow:
+            "0 0 0 .5px rgba(23,24,26,.08), 0 8px 24px -8px rgba(23,24,26,.22), 0 2px 6px -2px rgba(23,24,26,.1)",
+        }}
+      >
+        {TABS.map(([href, label], i) => {
+          const on = i === activeIdx;
+          const prevOn = i - 1 === activeIdx;
+          return (
+            <Link
+              key={href}
+              href={href}
+              className="relative flex h-11 flex-1 items-center justify-center rounded-full transition-colors"
+              style={{
+                background: on ? "#fff" : "transparent",
+                boxShadow: on
+                  ? "0 0 0 .5px rgba(23,24,26,.06), 0 2px 6px -1px rgba(23,24,26,.16)"
+                  : "none",
+              }}
             >
-              {label}
-            </span>
-          </Link>
-        );
-      })}
-    </nav>
+              <div
+                className="absolute bottom-3 left-0 top-3 w-px"
+                style={{
+                  background: i > 0 && !on && !prevOn ? "rgba(23,24,26,.12)" : "transparent",
+                }}
+              />
+              <span
+                className="text-[15px] font-semibold tracking-tight"
+                style={{ color: on ? "#17181A" : "#5F5C56" }}
+              >
+                {label}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+    </div>
   );
 }

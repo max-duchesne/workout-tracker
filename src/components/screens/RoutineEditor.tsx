@@ -202,7 +202,7 @@ export function RoutineEditor({
 
         <button
           onClick={addExercise}
-          className="flex h-[52px] items-center justify-center rounded-[18px] border-[1.5px] border-dashed border-[rgba(23,24,26,.15)] active:bg-surface"
+          className="flex h-[52px] items-center justify-center rounded-full border-[1.5px] border-dashed border-[rgba(23,24,26,.15)] active:bg-surface"
         >
           <span className="text-[15px] font-semibold text-muted">+ Add exercise</span>
         </button>
@@ -210,7 +210,7 @@ export function RoutineEditor({
         <button
           onClick={confirm}
           disabled={saving}
-          className="my-1.5 flex h-14 items-center justify-center rounded-[19px] bg-ink text-[17px] font-semibold tracking-tight text-white active:opacity-85 disabled:opacity-60"
+          className="my-1.5 flex h-14 items-center justify-center rounded-full bg-ink text-[17px] font-semibold tracking-tight text-white active:opacity-85 disabled:opacity-60"
         >
           {saving ? "Saving…" : "Confirm changes"}
         </button>

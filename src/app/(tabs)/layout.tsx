@@ -8,9 +8,10 @@ export default function TabsLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // The tab bar floats over the content (fixed); each screen pads its bottom.
   return (
-    <div className="flex min-h-dvh flex-col">
-      <div className="min-h-0 flex-1 overflow-y-auto">{children}</div>
+    <div className="min-h-dvh">
+      {children}
       <TabBar />
     </div>
   );

@@ -14,7 +14,7 @@ export function Sheet({
     <>
       <div
         onClick={onClose}
-        className="fixed inset-0 z-40 bg-black/30"
+        className="fixed inset-0 z-[45] bg-black/30"
         style={{ animation: "fadeIn .18s ease" }}
       />
       <div
