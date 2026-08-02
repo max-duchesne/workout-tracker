@@ -61,7 +61,7 @@ export function Calendar({
                 {col.tag}
               </span>
               <div
-                className="h-1 w-1 rounded-full"
+                className="h-[7px] w-[7px] rounded-full"
                 style={{ background: col.dot }}
               />
             </div>
