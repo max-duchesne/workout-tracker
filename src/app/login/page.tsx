@@ -38,7 +38,7 @@ export default function LoginPage() {
           priority
         />
         <h1 className="text-2xl font-bold tracking-tight text-ink">
-          Workout Tracker
+          Workout
         </h1>
       </div>
 

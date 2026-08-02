@@ -9,12 +9,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Workout Tracker",
+  title: "Workout",
   description: "Plan your week, run your workout, and track progress over time.",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
-    title: "Workouts",
+    title: "Workout",
     statusBarStyle: "default",
   },
 };
